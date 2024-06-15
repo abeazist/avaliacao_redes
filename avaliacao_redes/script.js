@@ -3,5 +3,5 @@ const mascara = document.getElementById('mascara')
 const subrede = document.getElementById('quantSubrede')
 
 function limpar() {
-    
+    //ta dando pra ver???
 }
