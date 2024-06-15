@@ -4,4 +4,5 @@ const subrede = document.getElementById('quantSubrede')
 
 function limpar() {
     //ta dando pra ver???
+    //siiim-bea
 }
