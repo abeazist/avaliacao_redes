@@ -1,21 +1,14 @@
-const enderecoIP = document.getElementById('enderecoIP')
-const mascara = document.getElementById('mascara')
-const subrede = document.getElementById('quantSubrede')
+const enderecoIP = document.getElementById('enderecoIP');
+const mascara = document.getElementById('mascara');
+const subrede = document.getElementById('quantSubrede');
+const limpar = document.getElementById("limpar")
 
-function limpar() {
-    //ta dando pra ver???
-    //siiim-bea
-}
 
-<<<<<<< HEAD
-//validação
-
-enderecoIP.addEventListener('click',()=>{
-    //testando para a fer
+enderecoIP.addEventListener("input",(evento)=>{
+    console.log("ola")
+    evento.target.value= evento.target.value.replace(/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/)
 })
-=======
 
-function descobreMascara(){
-    
-}
->>>>>>> 8161312eeeaefe5e47d0b1cd3c5785ac0a427962
+limpar.addEventListener("clcik",()=>{
+    console.log('ola')
+})
