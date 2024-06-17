@@ -6,3 +6,8 @@ function limpar() {
     //ta dando pra ver???
     //siiim-bea
 }
+
+
+function descobreMascara(){
+    
+}
