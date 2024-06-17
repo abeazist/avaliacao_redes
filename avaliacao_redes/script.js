@@ -6,3 +6,9 @@ function limpar() {
     //ta dando pra ver???
     //siiim-bea
 }
+
+//validação
+
+enderecoIP.addEventListener('click',()=>{
+    //testando para a fer
+})
