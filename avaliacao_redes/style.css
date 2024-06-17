@@ -1,21 +1,22 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
-    
-    
 }
-body{
+
+body {
     background-color: black;
     display: grid;
     place-items: center
 }
-.container{
+
+.container {
     position: absolute;
     top: 35%;
     left: 40%;
-    
+
 }
-.tabela{
+
+.tabela {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -27,20 +28,24 @@ body{
     padding: 3px;
 
 }
- #botoes{
+
+#botoes {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
- }
- 
- input{
+
+}
+
+input {
     width: 100fr;
     height: 20px;
- }
- button{
+}
+
+button {
     width: 9.8vw;
     height: 50px;
- }
+}
 
- 
+/* .respostas{
+    width: ;
+} */
