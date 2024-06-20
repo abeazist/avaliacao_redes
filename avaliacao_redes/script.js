@@ -21,7 +21,7 @@ function descobreMascara(){
     console.log(`Intervalo: ${enderecoIP} -> ${intervaloIP}`)
 
     //primeiro end
-    const calcPrimeiroEnd = (enderecoIP.value + 1)
+    const calcPrimeiroEnd = (enderecoIP + 1)
     console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
 
     //ultimo end
