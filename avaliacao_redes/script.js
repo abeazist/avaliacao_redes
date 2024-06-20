@@ -1,7 +1,7 @@
 const enderecoIP = document.getElementById('enderecoIP');
 const mascara = document.getElementById('mascara');
 const subrede = document.getElementById('quantSubrede');
-const limpar = document.getElementById("limpar")
+// const limpar = document.getElementById("limpar")
 
 // function limpar() {
 //     //ta dando pra ver???
@@ -18,15 +18,15 @@ function descobreMascara(){
     console.log(`Macara: ${mascFinal}`)
 
     //intervalo
-    const intervaloIP = (enderecoIP + qntEndereco)
-    console.log(`Intervalo: ${enderecoIP} -> ${intervaloIP}`)
+    const intervaloIP = (parseFloat(enderecoIP.value) + parseFloat(qntEndereco))
+    console.log(`Intervalo: ${enderecoIP.value} - ${intervaloIP}`)
 
     //primeiro end
-    const calcPrimeiroEnd = (enderecoIP + 1)
+    const calcPrimeiroEnd = (parseFloat(enderecoIP.value) + 1)
     console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
 
     //ultimo end
-    const calcUltimoEnd = (intervaloIP - 1)
+    const calcUltimoEnd = (parseFloat(intervaloIP) - 1)
     console.log(`Ultimo end válido: ${calcUltimoEnd}`)
 }
 
