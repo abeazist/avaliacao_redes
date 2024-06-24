@@ -26,6 +26,9 @@ function descobreMascara(){
     const mascFinal = (32-logaritmo);
     console.log(`Mascara: ${mascFinal}`)
 
+    const separa = enderecoIP.value.split('.')
+    console.log(separa[-1])
+
     //intervalo
     const intervaloIP = (parseFloat(enderecoIP.value) + parseFloat(qntEndereco))
     console.log(`Intervalo: ${enderecoIP.value} - ${intervaloIP}`)
@@ -39,21 +42,6 @@ function descobreMascara(){
     console.log(`Ultimo end válido: ${calcUltimoEnd}`)
 }
 
-// function enderecoBloco(){
-//     const intervaloIP = (enderecoIP.value + descobreMascara.qntEndereco)
-//     // console.log("Intervalo", enderecoIP "-", intervaloIP)
-//     console.log(`Intervalo: ${enderecoIP} -> ${intervaloIP}`)
-// }
-
-// function primeiroEnd(){
-//     const calcPrimeiroEnd = (enderecoIP.value + 1)
-//     console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
-// }
-
-// function ultimoEnd(){
-//     const calcUltimoEnd = (intervaloIP - 1)
-//     console.log(`Ultimo end válido: ${calcUltimoEnd}`)
-// }
 
 function calculos(){
     descobreMascara()
