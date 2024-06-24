@@ -11,19 +11,20 @@
 <body>
     <div class="container">
         <table class="tabela">
-            <tr><td>Endereço IP</td><td><input id="enderecoIP" type="text" maxlength="12"></td></tr>
+            <tr><td>Endereço IP</td><td><input id="enderecoIP" type="number" maxlength="12"></td></tr>
             <tr><td>Máscara</td> <td><input id="mascara" type="number"></td></tr>
             <tr><td>Quantidade de subrede</td><td><input id="quantSubrede" type="number"></td></tr>
-            <tr id="botoes"><td><button id="limpar" onclick="limpar()">Limpar</button></td><td><button onclick="calculos()">Calcular</button></td></tr>       
+            <tr id="botoes"><td><button id="limpar" onclick="limpar()">Limpar</button></td>
+            <td><button id="calcular">Calcular</button></td></tr>       
         </table>
 
-<!-- 
         <div class="respostas">
-            <div id="mascaraResposta"></div>
-            <div id="subRede"></div>
-            <div id="primeiroEnd"></div>
-            <div id="ultimoEnd"></div>
-        </div> -->
+            <div id="mascaraResposta">Mascara:</div>
+            <div id="subRede">Sub-Rede:</div>
+            <div id="primeiroEnd">Primeiro Endereço:</div>
+            <div id="ultimoEnd">Ultimo Endereço:</div>
+            <button id="voltar">Voltar</button>
+        </div> 
     </div>
     
 </body>

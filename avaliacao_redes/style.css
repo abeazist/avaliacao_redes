@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     display: grid;
     place-items: center;
 }
@@ -22,7 +22,7 @@ body {
     border: 1px solid rgb(255, 251, 251);
     width: 20vw;
     color: aliceblue;
-    background-color: rgb(4, 4, 31);
+    background-color: rgb(14, 14, 119);
     gap: 10px;
     padding: 3px;
 }
@@ -59,7 +59,7 @@ input {
 button {
     width: 9.0vw;
     height: 40px;
-    background-color: rgb(24, 24, 50);
+    background-color: rgb(47, 47, 151);
     color: aliceblue;
     border: 1px solid rgb(255, 251, 251);
     border-radius: 5px;
@@ -69,3 +69,19 @@ button {
 button:hover {
     background-color: rgb(44, 44, 70);
 }
+
+.respostas{
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(14, 14, 119);
+    height: 20vh;
+    width: 30vw;
+    display: none;
+
+}
+
+div .respostas{
+    color: white;
+    padding: 10px;
+}
+
+
