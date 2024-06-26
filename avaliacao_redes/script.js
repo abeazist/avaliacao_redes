@@ -82,20 +82,6 @@ function calculos(){
     mostraRespostas()
 }    
 
-
-enderecoIP.addEventListener("click", () => {
-    this.value = removerLetras(this.value)
-    removerLetras();})
-    // let letras='abcdefghijklmnopqrstuvwxyz';
-    // let letrasM='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    // if (enderecoIP.value.indexOf(letras) || enderecoIP.value.indexOf(letrasM)) {
-        
-    // }
-
-function removerLetras(valor) {
-    return valor.replace(/[a-zA-Z]/g, '');
-}
-
 // //Tentativa1 de validar os enderecos
 // function validarIP(ip){
 //     var masc=  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
@@ -117,38 +103,6 @@ function removerLetras(valor) {
 // }
 
 
-//Tentativa2 de validar os enderecos 
-function validarIP(ip){
-    var valido= /^\d{1,3}\.\d{1,3}.d{1,3}\.d{1,3}$/
-
-    if(!valido.test(ip)){
-        return false
-    }
-
-    var octeto= ip.split('.')
-
-    for ( lat1=0; i<4; i++){
-        var oct=octeto[i]
-        if (isNaN(oct) || oct<0 || oct >255){
-            return false
-        }
-        //completa com zeros a esquerda se precisar
-        octeto[i]=('000' +oct).slice(-3)
-    }
-    var formato= octeto.join('.')
-
-    return formato
-}
-
-function validoFormato(){
-    const enderecoIP = document.getElementById('enderecoIP').value;
-    var resultado= validarIP(enderecoIP)
-    if (resultado){
-        alert("ip valido")
-    } else {
-        alert("ip invalido")
-    }
-}
 
 function respostas(){
     if (tabela.style.display==="flex"){
