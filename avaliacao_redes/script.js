@@ -1,15 +1,32 @@
 const mascara = document.getElementById('mascara');
 const subrede = document.getElementById('quantSubrede');
+<<<<<<< HEAD
 const calcular= document.getElementById('calcular')
 var tabela= document.getElementsByClassName('.tabela')
 var respostas= document.getElementsByClassName('.respostas')
 var voltar= document.getElementById("voltar")
 // const limpar = document.getElementById("limpar")
+=======
+const limpar = document.getElementById("limpar");
+const mascaraResposta = document.getElementById("mascaraResposta")
+const subRede = document.getElementById('subRede')
+const primeiroEnd = document.getElementById('primeiroEnd')
+const ultimoEnd = document.getElementById('ultimoEnd')
 
-// function limpar() {
-//     //ta dando pra ver???
-//     //siiim-bea
-// }
+enderecoIP.addEventListener('input', () =>{
+    var formatado = enderecoIP.value.replace(/[^0-9.]/g, '');
+    enderecoIP.value = formatado
+});
+
+limpar.addEventListener('click',() => {
+    enderecoIP.value='';
+    mascara.value='';
+    subrede.value='';  
+})
+
+
+>>>>>>> 577d7789ab3905dbfb4f907fb04002b4c1ceab91
+
 
 calcular.addEventListener('click', calculos(), validarIP(), respostas() )
 voltar.addEventListener('click', function(){
@@ -23,7 +40,7 @@ function descobreMascara(){
     const expoente = Math.pow(2,mascInicial)
     const qntEndereco = (expoente/subrede.value)
     const logaritmo = Math.log2(qntEndereco)
-    const mascFinal = (32-logaritmo);
+    var mascFinal = (32-logaritmo);
     console.log(`Mascara: ${mascFinal}`)
 
     const separa = enderecoIP.value.split('.')
@@ -40,16 +57,40 @@ function descobreMascara(){
     //ultimo end
     const calcUltimoEnd = (parseFloat(intervaloIP) - 1)
     console.log(`Ultimo end válido: ${calcUltimoEnd}`)
-}
+}    
 
+<<<<<<< HEAD
+=======
+// function enderecoBloco(){
+//     const intervaloIP = (enderecoIP.value + descobreMascara.qntEndereco)    
+//     // console.log("Intervalo", enderecoIP "-", intervaloIP)
+//     console.log(`Intervalo: ${enderecoIP} -> ${intervaloIP}`)
+// }
+
+// function primeiroEnd(){
+//     const calcPrimeiroEnd = (enderecoIP.value + 1)    
+//     console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
+// }
+
+// function ultimoEnd(){
+//     const calcUltimoEnd = (intervaloIP - 1)    
+//     console.log(`Ultimo end válido: ${calcUltimoEnd}`)
+// }
+function mostraRespostas(){
+    mascaraResposta.innerHTML = mascFinal
+}
+>>>>>>> 577d7789ab3905dbfb4f907fb04002b4c1ceab91
 
 function calculos(){
     descobreMascara()
+    
     // enderecoBloco()
     // primeiroEnd()
     // ultimoEnd()
-}
+    mostraRespostas()
+}    
 
+<<<<<<< HEAD
 enderecoIP.addEventListener("click", () => {
     this.value = removerLetras(this.value)
     removerLetras();})
@@ -125,3 +166,5 @@ function respostas(){
 }
 
 //desisti
+=======
+>>>>>>> 577d7789ab3905dbfb4f907fb04002b4c1ceab91

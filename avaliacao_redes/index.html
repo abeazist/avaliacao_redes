@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>IP</title>
 </head>
 <body>
     <div class="container">
+        <h1>Cálculo de Sub-Redes</h1>
+        <br>
         <table class="tabela">
+<<<<<<< HEAD
             <tr><td>Endereço IP</td><td><input id="enderecoIP" type="number" maxlength="12"></td></tr>
             <tr><td>Máscara</td> <td><input id="mascara" type="number"></td></tr>
             <tr><td>Quantidade de subrede</td><td><input id="quantSubrede" type="number"></td></tr>
@@ -25,7 +27,25 @@
             <div id="ultimoEnd">Ultimo Endereço:</div>
             <button id="voltar">Voltar</button>
         </div> 
+=======
+            <tr><td>Endereço IP</td><td><input placeholder="ex: 125.23.12.2" id="enderecoIP" maxlength="15"></td></tr>
+            <tr><td>Máscara</td><td><input id="mascara" type="number"></td></tr>
+            <tr><td>Quantidade de Subrede</td><td><input id="quantSubrede" type="number"></td></tr>
+            <tr id="botoes">
+                <td colspan="2">
+                    <button id="limpar">Limpar</button>
+                    <button onclick="calculos()">Calcular</button>
+                </td>
+            </tr>       
+        </table>
+
+>>>>>>> 577d7789ab3905dbfb4f907fb04002b4c1ceab91
     </div>
-    
+    <div class="respostas">
+        <div id="mascaraResposta"></div>
+        <div id="subRede"></div>
+        <div id="primeiroEnd"></div>
+        <div id="ultimoEnd"></div>
+    </div>
 </body>
 </html>
