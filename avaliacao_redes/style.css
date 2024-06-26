@@ -5,16 +5,15 @@
 }
 
 body {
-<<<<<<< HEAD
     background-color: rgb(0, 0, 0);
     display: grid;
     place-items: center;
 }
 
 .container {
-    position: absolute;
-    top: 35%;
-    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tabela {
@@ -86,8 +85,7 @@ div .respostas{
     padding: 10px;
 }
 
-
-=======
+body{
     background-image: linear-gradient(to bottom,rgb(22, 242, 224),rgb(69, 255, 196),white);
     display: flex;
     justify-content: center;
@@ -157,4 +155,4 @@ button:hover {
     text-align: center;
 
 }
->>>>>>> 577d7789ab3905dbfb4f907fb04002b4c1ceab91
+
