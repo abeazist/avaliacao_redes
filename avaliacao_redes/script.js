@@ -18,9 +18,6 @@ limpar.addEventListener('click',() => {
     subrede.value='';  
 })
 
-
-
-
 function descobreMascara(){
     //mascara
     const mascInicial = (32 - mascara.value);
@@ -70,4 +67,4 @@ function calculos(){
     // ultimoEnd()
     mostraRespostas()
 }    
-
+//se tiver essa msg, é o codigo certo
