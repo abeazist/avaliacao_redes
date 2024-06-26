@@ -1,51 +1,76 @@
 * {
     box-sizing: border-box;
     padding: 0;
+    margin: 0;
 }
 
 body {
-    background-color: black;
-    display: grid;
-    place-items: center
+    background-image: linear-gradient(to bottom,rgb(22, 242, 224),rgb(69, 255, 196),white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: aliceblue;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    position: absolute;
-    top: 35%;
-    left: 40%;
-
+    background-color: rgb(32, 43, 99);
+    border: 1px solid rgb(32, 43, 99);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    
 }
 
 .tabela {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    border: 1px solid rgb(255, 251, 251);
-    width: 20vw;
-    color: aliceblue;
-    background-color: rgb(4, 4, 31);
-    gap: 10px;
-    padding: 3px;
-
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-#botoes {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
+.tabela td {
+    padding: 10px;
 }
 
 input {
-    width: 100fr;
-    height: 20px;
+    width: calc(100% - 20px);
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
 }
 
 button {
-    width: 9.8vw;
+    width: calc(50% - 10px);
     height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
 }
 
-/* .respostas{
-    width: ;
-} */
+button:hover {
+    background-color: #0056b3;
+}
+
+.respostas {
+    margin-top: 20px;
+}
+
+.respostas div {
+    margin-bottom: 10px;
+}
+
+.respostas{
+    border: solid 2px rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 10px;
+    width:40%;
+    height: 58%;
+    text-align: center;
+
+}
