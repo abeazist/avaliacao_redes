@@ -19,6 +19,10 @@ var voltar= document.getElementById("voltar")
 function descobreMascara(){
     const subrede = document.getElementById('quantSubrede');
     //mascara
+    const separa = enderecoIP.value.split(".")
+    const ip1 = separa.slice(-1)
+    console.log(ip1)
+    
     const mascInicial = (32 - mascara.value);
     const expoente = Math.pow(2,mascInicial)
     const qntEndereco = (expoente/subrede.value)
@@ -26,15 +30,19 @@ function descobreMascara(){
     const mascFinal = (32-logaritmo);
     console.log(`Mascara: ${mascFinal}`)
 
-    const separa = enderecoIP.value.split('.')
-    console.log(separa[-1])
-    
     //intervalo
-    const intervaloIP = (parseFloat(enderecoIP.value) + parseFloat(qntEndereco))
-    console.log(`Intervalo: ${enderecoIP.value} - ${intervaloIP}`)
+    const intervaloIP = (parseFloat(ip1.value) + parseFloat(qntEndereco))
+    console.log(`Intervalo: ${ip1.value} - ${intervaloIP}`)
+    
+    //condicao para quando o ultimo numero der maior que 255
+    if (ip1 >= 255){
+        const ip2 = separa(-2)
+        ip2+=1
+
+    }
 
     //primeiro end
-    const calcPrimeiroEnd = (parseFloat(enderecoIP.value) + 1)
+    const calcPrimeiroEnd = (parseFloat(ip1.value) + 1)
     console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
 
     //ultimo end
@@ -47,6 +55,31 @@ function descobreMascara(){
         descobreMascara()
     
     }
+    // const mascInicial = (32 - mascara.value);
+    // const expoente = Math.pow(2,mascInicial)
+    // const qntEndereco = (expoente/subrede.value)
+    // const logaritmo = Math.log2(qntEndereco)
+    // const mascFinal = (32-logaritmo);
+    // console.log(`Mascara: ${mascFinal}`)
+
+    // //intervalo
+    // const intervaloIP = (parseFloat(enderecoIP.value) + parseFloat(qntEndereco))
+    // console.log(`Intervalo: ${enderecoIP.value} - ${intervaloIP}`)
+
+    // //primeiro end
+    // const calcPrimeiroEnd = (parseFloat(enderecoIP.value) + 1)
+    // console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
+
+    // //ultimo end
+    // const calcUltimoEnd = (parseFloat(intervaloIP) - 1)
+    // console.log(`Ultimo end válido: ${calcUltimoEnd}`)
+
+
+    // for (var i = 0; i < subrede.value ; i++){
+    //     enderecoIP = intervaloIP + 1
+    //     descobreMascara()
+    
+    // }
 }
 
 
