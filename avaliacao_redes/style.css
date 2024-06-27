@@ -10,21 +10,21 @@ body {
     place-items: center;
 }
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
     
-}
+} */
 
 .tabela {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: 1px solid rgb(255, 251, 251);
+    /* border: 1px solid rgb(255, 251, 251); */
     width: 20vw;
     color: aliceblue;
-    background-color: rgb(14, 14, 119);
+    /* background-color: rgb(14, 14, 119); */
     gap: 10px;
     padding: 3px;
 }
@@ -59,8 +59,8 @@ input {
 }
 
 button {
-    width: 9.0vw;
-    height: 40px;
+    /* width: 9.0vw;
+    height: 40px; */
     background-color: rgb(47, 47, 151);
     color: aliceblue;
     border: 1px solid rgb(255, 251, 251);
@@ -104,6 +104,7 @@ body{
     width: 80%;
     max-width: 600px;
     text-align: center;
+
     
 }
 
