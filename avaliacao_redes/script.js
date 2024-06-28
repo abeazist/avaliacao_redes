@@ -29,86 +29,55 @@ voltar.addEventListener('click', function(){
 })
 
 function descobreMascara(){
+    const subrede = document.getElementById('quantSubrede');
+  
+    const separa = enderecoIP.value.split(".")
+    const ip1 = separa.slice(-1) // index 3
+    const ip2 = separa.slice(2,3) //index 2
+    const ip3 = separa.slice(1,2) //index 1
+    const ip4 = separa.slice(0,1) //inedx 0
+    
+    const paraString1 = ip1.toString()
+    const paraString2 = ip2.toString()
+    const paraString3 = ip3.toString()
+    const paraString4 = ip4.toString()
+
+    // console.log(paraString1)
+    // console.log(paraString2)
+    // console.log(paraString3)
+    // console.log(paraString4)    
+    
     //mascara
     const mascInicial = (32 - mascara.value);
     const expoente = Math.pow(2,mascInicial)
     const qntEndereco = (expoente/subrede.value)
     const logaritmo = Math.log2(qntEndereco)
-    var mascFinal = (32-logaritmo);
+    const mascFinal = (32-logaritmo);
+    const somaEnderecoBloco = (qntEndereco-1)
     console.log(`Mascara: ${mascFinal}`)
-
-    const separa = enderecoIP.value.split('.')
-    console.log(separa[-1])
-
+    
     //intervalo
-    const intervaloIP = (parseFloat(enderecoIP.value) + parseFloat(qntEndereco))
-    console.log(`Intervalo: ${enderecoIP.value} - ${intervaloIP}`)
-
+    const intervaloIP = (parseFloat(paraString1) + parseFloat(somaEnderecoBloco))
+    const enderecoBloco = `${paraString4}.${paraString3}.${paraString2}.${intervaloIP}`
+    console.log(`Intervalo: ${enderecoIP.value} - ${enderecoBloco}`)
+                  
     //primeiro end
-    const calcPrimeiroEnd = (parseFloat(enderecoIP.value) + 1)
-    console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
+    const calcPrimeiroEnd = (parseFloat(paraString1) + 1)
+    const primeiroEndValido = `${paraString4}.${paraString3}.${paraString2}.${calcPrimeiroEnd}`
+    console.log(`Primeiro end válido: ${primeiroEndValido}`)
 
     //ultimo end
     const calcUltimoEnd = (parseFloat(intervaloIP) - 1)
-    console.log(`Ultimo end válido: ${calcUltimoEnd}`)
-}    
+    const ultimoEndValido = `${paraString4}.${paraString3}.${paraString2}.${calcUltimoEnd}`
+    console.log(`Ultimo end válido: ${ultimoEndValido}`)
 
-
-// function enderecoBloco(){
-//     const intervaloIP = (enderecoIP.value + descobreMascara.qntEndereco)    
-//     // console.log("Intervalo", enderecoIP "-", intervaloIP)
-//     console.log(`Intervalo: ${enderecoIP} -> ${intervaloIP}`)
-// }
-
-// function primeiroEnd(){
-//     const calcPrimeiroEnd = (enderecoIP.value + 1)    
-//     console.log(`Primeiro end válido: ${calcPrimeiroEnd}`)
-// }
-
-// function ultimoEnd(){
-//     const calcUltimoEnd = (intervaloIP - 1)    
-//     console.log(`Ultimo end válido: ${calcUltimoEnd}`)
-// }
-function mostraRespostas(){
-    mascaraResposta.innerHTML = mascFinal
-}
-
-function calculos(){
-    descobreMascara()
-    
-    // enderecoBloco()
-    // primeiroEnd()
-    // ultimoEnd()
-    mostraRespostas()
-}    
-
-// //Tentativa1 de validar os enderecos
-// function validarIP(ip){
-//     var masc=  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-//     if (!masc.test(ip)) {
-//         return false
-//     }
-//     return true
-
-// }
-
-// function formatar(ip){
-//     if (!validarIP(ip)){
-//         return  "IP invalido"
-//     }
-
-//     return ip.split(".").map(add => {
-//         return add.replace(/(\d{3})(?=\d)/g, '$1.')
-//     }).join('.')
-// }
-
-
-
-function respostas(){
-    if (tabela.style.display==="flex"){
-        tabela.style.display==="none"
-        respostas.style.display==="inline"
+    for (var i = 0; i < subrede.value ; i++){
+        enderecoIP = enderecoBloco + 1
+        console.log(enderecoIP)
+        descobreMascara()  
     }
 }
-
-//desisti
+    
+    function calculos(){
+        descobreMascara()
+    }
