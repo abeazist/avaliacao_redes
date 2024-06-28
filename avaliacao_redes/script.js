@@ -22,11 +22,11 @@ limpar.addEventListener('click',() => {
 })
 
 
-calcular.addEventListener('click', calculos(), validarIP(), respostas() )
-voltar.addEventListener('click', function(){
-    tabela.style.display==="flex"
-    respostas.style.display==="none"
-})
+// calcular.addEventListener('click', calculos(), validarIP(), respostas() )
+// voltar.addEventListener('click', function(){
+//     tabela.style.display==="flex"
+//     respostas.style.display==="none"
+// })
 
 function descobreMascara(){
     const subrede = document.getElementById('quantSubrede');
