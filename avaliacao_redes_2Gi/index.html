@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrumando o css</title>
+    <link rel="stylesheet" href="/avaliacao_redes_2/style.css">
+    <script src="/avaliacao_redes_2/script.js" defer></script>
+</head>
+<body>
+    <div class="caixa" id="caixa">
+        <div class="titulo">
+            <h3>Calculos de Sub-redes</h3>
+            <img src="/Arrumando/close_24dp_FILL0_wght400_GRAD0_opsz24.png">
+        </div>
+        <div class="corpo">
+            <div class="linha">
+                <label for="ip-address">Endereço IP:</label>
+                <input type="text" id="ip-address" name="ip-address">
+            </div>
+            <div class="linha">
+                <label for="mask">Máscara:</label>
+                <input type="text" id="mask" name="mask">
+            </div>
+            <div class="linha">
+                <label for="subnets">Qtd de Sub-Redes:</label>
+                <input type="text" id="subnets" name="subnets">
+            </div>
+        </div>
+        <div class="botoes">
+            <button id="limpar">Limpar!</button>
+            <button id="calcular">Calcular!</button>
+        </div>
+    </div>
+
+    <div class="resposta" id="resposta">
+        <div class="titulo">
+            <h3>Resultados</h3>
+            <img src="/Arrumando/close_24dp_FILL0_wght400_GRAD0_opsz24.png" id="fechar-resposta">
+        </div>
+        <div class="corpo">
+            <p id="primeiro-endereco">Primeiro Endereço:</p>
+            <p id="ultimo-endereco">Ultimo Endereço:</p>
+            <p id="mascara">Mascara:</p>
+        </div>
+    </div>
+</body>
+</html>
