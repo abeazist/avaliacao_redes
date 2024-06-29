@@ -25,12 +25,12 @@ function calculateSubnets() { //function calculaSubredes
         //explicação chat deu:calculo o novo prefixo adicionando o número de bits das sub-redes ao prefixo original
 
         const subnets = []; //criou uma lista para as sub redes,vazia por enquanto
-        for (let i = 0; i < numSubnets; i++) {
-            const subnetAddress = networkAddress + (i * (1 << (32 - newPrefix))); 
-            const firstIp = subnetAddress + 1;
-            const lastIp = subnetAddress + (1 << (32 - newPrefix)) - 2;
-            subnets.push({
-                subnet: intToIpString(subnetAddress) + '/' + newPrefix,
+        for (let i = 0; i < numSubnets; i++) { //for passando pela a quantidade de sub redes
+            const subnetAddress = networkAddress + (i * (1 << (32 - newPrefix))); //Calcula o endereço da sub-rede adicionando o deslocamento ao endereço de rede original.
+            const firstIp = subnetAddress + 1; //Calcula o primeiro endereço IP da sub-rede (endereços de rede + 1)
+            const lastIp = subnetAddress + (1 << (32 - newPrefix)) - 2; //Calcula o último endereço IP da sub-rede.
+            subnets.push({ //adiciona na lista nova,o num da sub rede, o 1 endereco e o ultimo
+                subnet: intToIpString(subnetAddress) + '/' + newPrefix, //Converte o endereço da sub-rede de inteiro para string e adiciona o prefixo(mascara)
                 firstIp: intToIpString(firstIp),
                 lastIp: intToIpString(lastIp)
             });
@@ -38,7 +38,7 @@ function calculateSubnets() { //function calculaSubredes
 
         subnets.forEach((subnet, index) => {
             resultDiv.innerHTML += <p>Sub-rede ${index + 1}:<br>Primeiro IP: ${subnet.firstIp}<br>Último IP: ${subnet.lastIp}</p>;
-        });
+        });//aqui ele ta adicionando tudo para o html
     } catch (e) {
         alert('Erro ao calcular sub-redes: ' + e.message);
     }
@@ -46,13 +46,13 @@ function calculateSubnets() { //function calculaSubredes
 
 function ipStringToInt(ip) {
     return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet), 0);
-}
+}// e nessa função ele esta separando em octetos e converte cada octeto para inteiro e desloca os bits para a esquerda, acumulando o valor final.
 
 function intToIpString(int) {
     return [
-        (int >>> 24) & 255,
-        (int >>> 16) & 255,
-        (int >>> 8) & 255,
-        int & 255
-    ].join('.');
+        (int >>> 24) & 255,//Desloca os 8 bits mais significativos para a direita e aplica uma máscara para obter o primeiro octeto.
+        (int >>> 16) & 255,//Desloca os próximos 8 bits mais significativos para a direita e aplica uma máscara para obter o segundo octeto.
+        (int >>> 8) & 255,//Desloca os próximos 8 bits mais significativos para a direita e aplica uma máscara para obter o terceiro octeto.
+        int & 255 //Aplica uma máscara para obter o quarto octeto.
+    ].join('.'); //Junta os octetos em uma string separada por pontos.
 }
