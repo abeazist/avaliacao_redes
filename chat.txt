@@ -1,0 +1,58 @@
+function calculateSubnets() { //function calculaSubredes
+    const network = document.getElementById('network').value; //const enderecoIP = document.getElementById("ip");
+    const mask = document.getElementById('mask').value; //const mascara = document.getElementById('masc');
+    const numSubnets = parseInt(document.getElementById('subnets').value); //const subrede = parseInt(document.getElementById('qtdSub').value);
+
+    if (!network || isNaN(numSubnets) || numSubnets < 1) {
+        alert('Por favor, insira um endereço de rede válido e o número de sub-redes.');
+        return;
+    } //se o ip for diferente ou nao for um numero ou a quantidade de sub redes for menor que 1, é pra inserir um valor valido
+    //Verifica se algum dos valores não está presente, se o número de sub-redes não é um número ou se é menor que 1.
+    //nao necessário no código até o momento
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = ''; //é pra o resultado nao aparecer, dá pra tirar do código
+
+///Inicia um bloco try para capturar qualquer erro que possa ocorrer durante o cálculo das sub-redes.
+    try {
+        const networkWithMask = `${network}/${mask}`;//Cria uma string combinando o endereço de rede e a máscara no formato endereço/máscara.
+        //podemos musar o nome networkWithMask por, enderecoIPMascara, por ter os dois
+        const [ip, prefix] = network.split('/'); //Divide a string enderecoIPMascara em duas partes: o endereço IP (ip) e o prefixo de rede (prefix)(ou mascara).
+        const networkAddress = ipStringToInt(ip); //convertendo o ip de string para um inteiro
+        const networkPrefix = parseInt(prefix); //convertendo a mascara para um inteiro
+        const numBitsSubnets = Math.ceil(Math.log2(numSubnets)); //a funcao ceil é para arrendondar, e esta calculando o log da qnt,(ainda n sei pq..) e ta colocando o numero de bits da sub rede
+        const newPrefix = networkPrefix + numBitsSubnets;//a nova mascara é o valor int da antiga + o numero de sub redes bits,calculado 
+        //explicação chat deu:calculo o novo prefixo adicionando o número de bits das sub-redes ao prefixo original
+
+        const subnets = []; //criou uma lista para as sub redes,vazia por enquanto
+        for (let i = 0; i < numSubnets; i++) {
+            const subnetAddress = networkAddress + (i * (1 << (32 - newPrefix))); 
+            const firstIp = subnetAddress + 1;
+            const lastIp = subnetAddress + (1 << (32 - newPrefix)) - 2;
+            subnets.push({
+                subnet: intToIpString(subnetAddress) + '/' + newPrefix,
+                firstIp: intToIpString(firstIp),
+                lastIp: intToIpString(lastIp)
+            });
+        }
+
+        subnets.forEach((subnet, index) => {
+            resultDiv.innerHTML += <p>Sub-rede ${index + 1}:<br>Primeiro IP: ${subnet.firstIp}<br>Último IP: ${subnet.lastIp}</p>;
+        });
+    } catch (e) {
+        alert('Erro ao calcular sub-redes: ' + e.message);
+    }
+}
+
+function ipStringToInt(ip) {
+    return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet), 0);
+}
+
+function intToIpString(int) {
+    return [
+        (int >>> 24) & 255,
+        (int >>> 16) & 255,
+        (int >>> 8) & 255,
+        int & 255
+    ].join('.');
+}

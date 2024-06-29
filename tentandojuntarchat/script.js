@@ -13,7 +13,7 @@ var tabela = document.getElementsByClassName('.tabela')
 var respostas = document.getElementsByClassName('.respostas')
 var voltar = document.getElementById("voltar")
 
-
+///CAIXA RESPOSTA
 document.getElementById("calcular").addEventListener("click", function() {
     document.getElementById("caixa").style.display = "none";
     document.getElementById("resposta").style.display = "block";
@@ -26,7 +26,7 @@ document.getElementById("fechar-resposta").addEventListener("click", function() 
     document.getElementById("resposta").style.display = "none";
 });
 
-//////////////
+//////////////VALIDAÇOES
 
 enderecoIP.addEventListener('input', () => {
     var formatado = enderecoIP.value.replace(/[^0-9.]/g, '');
@@ -39,9 +39,8 @@ limpar.addEventListener('click', () => {
     subrede.value = '';
 })
 
-
+//FUNÇOES
 function descobreMascara() {
-
 
     const separa = enderecoIP.value.split(".")
     const ip1 = separa.slice(-1) // index 3

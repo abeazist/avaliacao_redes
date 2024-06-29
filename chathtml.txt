@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Sub-redes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Sub-redes</h1>
+        <form id="subnet-form">
+            <label for="network">Endereço de Rede:</label>
+            <input type="text" id="network" name="network" required>//id="ip"
+            
+            <label for="mask">Máscara de Rede:</label>
+            <input type="text" id="mask" name="mask" required>//id="mask"
+            
+            <label for="subnets">Número de Sub-redes:</label>
+            <input type="number" id="subnets" name="subnets" required> //id="qtdSub"
+            
+            <button type="button" onclick="calculateSubnets()">Calcular</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
