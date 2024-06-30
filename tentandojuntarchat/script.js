@@ -1,24 +1,7 @@
-const mascara = document.getElementById('masc');
-const enderecoIP = document.getElementById("ip")
-const subrede = document.getElementById('qtdSub');
-//essas de cima sao as q eu sei q tao td certo
-
-const calcular = document.getElementById('calcular')
-const limpar = document.getElementById("limpar");
-const mascaraResposta = document.getElementById("mascaraResposta")
-const subRede = document.getElementById('subRede')
-const primeiroEnd = document.getElementById('primeiroEnd')
-const ultimoEnd = document.getElementById('ultimoEnd')
-var tabela = document.getElementsByClassName('.tabela')
-var respostas = document.getElementsByClassName('.respostas')
-var voltar = document.getElementById("voltar")
-
-///CAIXA RESPOSTA
 document.getElementById("calcular").addEventListener("click", function() {
     document.getElementById("caixa").style.display = "none";
     document.getElementById("resposta").style.display = "block";
-    descobreMascara()
-
+    calculaSubredes();
 });
 
 document.getElementById("fechar-resposta").addEventListener("click", function() {
@@ -26,70 +9,67 @@ document.getElementById("fechar-resposta").addEventListener("click", function() 
     document.getElementById("resposta").style.display = "none";
 });
 
-//////////////VALIDAÇOES
-
-enderecoIP.addEventListener('input', () => {
-    var formatado = enderecoIP.value.replace(/[^0-9.]/g, '');
-    enderecoIP.value = formatado
+document.getElementById("limpar").addEventListener("click", () => {
+    document.getElementById("ip").value = '';
+    document.getElementById("masc").value = '';
+    document.getElementById("qtdSub").value = '';
+    document.getElementById("respostas").innerHTML = '';
+    document.getElementById("resposta").style.display = "none";
+    document.getElementById("caixa").style.display = "block";
 });
 
-limpar.addEventListener('click', () => {
-    enderecoIP.value = '';
-    mascara.value = '';
-    subrede.value = '';
-})
+function calculaSubredes() {
+    const enderecoIP = document.getElementById("ip").value;
+    const mascara = parseInt(document.getElementById("masc").value);
+    const subrede = parseInt(document.getElementById("qtdSub").value);
 
-//FUNÇOES
-function descobreMascara() {
+    if (!enderecoIP || isNaN(mascara) || isNaN(subrede) || subrede < 1) {
+        alert("Por favor, insira um endereço de rede, máscara de rede válida e o número de sub-redes.");
+        return;
+    }
 
-    const separa = enderecoIP.value.split(".")
-    const ip1 = separa.slice(-1) // index 3
-    const ip2 = separa.slice(2, 3) //index 2
-    const ip3 = separa.slice(1, 2) //index 1
-    const ip4 = separa.slice(0, 1) //inedx 0
+    // const respostasDiv = document.getElementById("respostas");
+    // respostasDiv.innerHTML = '';
 
-    const paraString1 = ip1.toString()
-    const paraString2 = ip2.toString()
-    const paraString3 = ip3.toString()
-    const paraString4 = ip4.toString()
+    try {
+        const enderecoBloco = ipStringToInt(enderecoIP);
+        const numBitsSubnets = Math.ceil(Math.log2(subrede));
+        const novaMascara = mascara + numBitsSubnets;
 
-    // console.log(paraString1)
-    // console.log(paraString2)
-    // console.log(paraString3)
-    // console.log(paraString4)    
+        const subredes = [];
+        for (let i = 0; i < subrede; i++) {
+            const enderecoSubrede = enderecoBloco + (i * (1 << (32 - novaMascara)));
+            const primeiroEnde = enderecoSubrede + 1;
+            const ultimoEnde = enderecoSubrede + (1 << (32 - novaMascara)) - 2;
+            subredes.push({
+                mascaraNova: intToIpString(novaMascara),
+                primeiroEnde: intToIpString(primeiroEnde),
+                ultimoEnde: intToIpString(ultimoEnde)
+            });
+        }
 
-    //mascara
-    const mascInicial = (32 - mascara.value);
-    const expoente = Math.pow(2, mascInicial)
-    const qntEndereco = (expoente / subrede.value)
-    const logaritmo = Math.log2(qntEndereco)
-    const mascFinal = (32 - logaritmo);
-    console.log(`Mascara: ${mascFinal}`)
-    const somaEnderecoBloco = (qntEndereco - 1)
+        subredes.forEach((subRedes, index) => {
+            console.log(subRedes);
+            // console.log(subredes);
+            // console.log(primeiroEnde);
+            // console.log(ultimoEnde);
+            // respostasDiv.innerHTML += `<p>Sub-rede ${index + 1}:<br>Primeiro Endereço: ${subRedes.primeiroEnde}<br>Último Endereço: ${subRedes.ultimoEnde}</p>`;
+        });
+    } catch (e) {
 
-    //intervalo
-    const intervaloIP = (parseFloat(paraString1) + parseFloat(somaEnderecoBloco))
-    const enderecoBloco = `${paraString4}.${paraString3}.${paraString2}.${intervaloIP}`
-    console.log(`Intervalo: ${enderecoIP.value} - ${enderecoBloco}`)
-
-    //primeiro end
-    const calcPrimeiroEnd = (parseFloat(paraString1) + 1)
-    const primeiroEndValido = `${paraString4}.${paraString3}.${paraString2}.${calcPrimeiroEnd}`
-    console.log(`Primeiro end válido: ${primeiroEndValido}`)
-
-    //ultimo end
-    const calcUltimoEnd = (parseFloat(intervaloIP) - 1)
-    const ultimoEndValido = `${paraString4}.${paraString3}.${paraString2}.${calcUltimoEnd}`
-    console.log(`Ultimo end válido: ${ultimoEndValido}`)
-
-    for (var i = 0; i < subrede.value; i++) {
-        enderecoIP = enderecoBloco + 1
-        console.log(enderecoIP)
-        descobreMascara()
+        alert('Erro ao calcular as sub-redes: ' + e.message);
     }
 }
 
-function calculos() {
-    descobreMascara()
+function ipStringToInt(ip) {
+    return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet), 0);
 }
 
+function intToIpString(int) {
+    return [
+        (int >>> 24) & 255,
+        (int >>> 16) & 255,
+        (int >>> 8) & 255,
+        int & 255
+    ].join('.');
+}

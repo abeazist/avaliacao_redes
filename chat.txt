@@ -17,14 +17,14 @@ function calculateSubnets() { //function calculaSubredes
     try {
         const networkWithMask = `${network}/${mask}`;//Cria uma string combinando o endereço de rede e a máscara no formato endereço/máscara.
         //podemos musar o nome networkWithMask por, enderecoIPMascara, por ter os dois
-        const [ip, prefix] = network.split('/'); //Divide a string enderecoIPMascara em duas partes: o endereço IP (ip) e o prefixo de rede (prefix)(ou mascara).
-        const networkAddress = ipStringToInt(ip); //convertendo o ip de string para um inteiro
-        const networkPrefix = parseInt(prefix); //convertendo a mascara para um inteiro
-        const numBitsSubnets = Math.ceil(Math.log2(numSubnets)); //a funcao ceil é para arrendondar, e esta calculando o log da qnt,(ainda n sei pq..) e ta colocando o numero de bits da sub rede
+        const [ip, prefix(numMascara)] = network.split('/'); //Divide a string enderecoIPMascara em duas partes: o endereço IP (ip) e o prefixo de rede (prefix)(ou mascara).
+        const networkAddress//enderecoBloco = ipStringToInt(ip); //convertendo o ip de string para um inteiro
+        const networkPrefix //mascaraInt = parseInt(prefix); //convertendo a mascara para um inteiro
+        const numBitsSubnets //numsubredeBits = Math.ceil(Math.log2(numSubnets)); //a funcao ceil é para arrendondar, e esta calculando o log da qnt,(ainda n sei pq..) e ta colocando o numero de bits da sub rede
         const newPrefix = networkPrefix + numBitsSubnets;//a nova mascara é o valor int da antiga + o numero de sub redes bits,calculado 
         //explicação chat deu:calculo o novo prefixo adicionando o número de bits das sub-redes ao prefixo original
 
-        const subnets = []; //criou uma lista para as sub redes,vazia por enquanto
+        const subnets //novaSubrede = []; //criou uma lista para as sub redes,vazia por enquanto
         for (let i = 0; i < numSubnets; i++) { //for passando pela a quantidade de sub redes
             const subnetAddress = networkAddress + (i * (1 << (32 - newPrefix))); //Calcula o endereço da sub-rede adicionando o deslocamento ao endereço de rede original.
             const firstIp = subnetAddress + 1; //Calcula o primeiro endereço IP da sub-rede (endereços de rede + 1)

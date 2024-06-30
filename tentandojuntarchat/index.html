@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARRUMANDO O JS CHAT</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <title>ARRUMANDO O JS CHAT</title>
 
 </head>
 <body>
@@ -17,15 +18,15 @@
         <div class="corpo">
             <div class="linha">
                 <label for="ip">Endereço IP:</label>
-                <input id="ip" name="ip">
+                <input type="text" id="ip" name="ip">
             </div>
             <div class="linha">
                 <label for="mascara">Máscara:</label>
-                <input id="masc" name="masc">
+                <input type="text" id="masc" name="masc">
             </div>
             <div class="linha">
                 <label for="qtdSub">Quantidade de Sub-Redes:</label>
-                <input id="qtdSub" name="qtdSub">
+                <input type="number" id="qtdSub" name="qtdSub">
             </div>
         </div>
         <div class="botoes">
@@ -37,9 +38,10 @@
     <div class="resposta" id="resposta">
         <div class="titulo">
             <h3>Resultados</h3>
-            <img src="/close_24dp_FILL0_wght400_GRAD0_opsz24.png" id="fechar-resposta">
+            <img src="arrow_back_ios_40dp_FILL0_wght400_GRAD0_opsz40.png" id="fechar-resposta">
         </div>
         <div class="corpo">
+            <p id="redes">Sub-rede:</p>
             <p id="primeiro-endereco">Primeiro Endereço:</p>
             <p id="ultimo-endereco">Ultimo Endereço:</p>
             <p id="mascara">Mascara:</p>
