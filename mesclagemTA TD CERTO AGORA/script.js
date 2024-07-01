@@ -18,8 +18,7 @@ document.getElementById("limpar").addEventListener("click", () => {
     document.getElementById("caixa").style.display = "block";
 });
 /*
-declarando as variaveis, enderecoIP,mascara e subrede capturando pelo o id do HTML, e com as variaveis mascara eu subrede, está
-convertendo para um inteito
+declarando as variaveis,os parânetros: enderecoIP,mascara e subrede estão sendo capturando pelo o id do HTML, e com as variáveis mascara eu subrede, está convertendo para um inteiro
 */
 function calculaSubredes() {
     const enderecoIP = document.getElementById("ip").value;
@@ -65,6 +64,8 @@ pelo o usuário, o metodo array push() adiciona na lista, os resultados dos calc
         }
 /*
 Com o método forEach() ele executa a função de mostrar o resultado em cada elemento do array, colocando esse resultado no HTML
+-Parâmetro subRedes: é do tipo lista de array de objetos, onde cada objeto representa uma subrede, com suas informações.
+-Parâmetro index: é do tipo number,utilizado para numerar as sub redes na saída do html, ele possui o índice atual da iteração do forEach.
 */
         subredes.forEach((subRedes, index) => {
             const mostraResultado = document.createElement("div")
@@ -87,7 +88,7 @@ Com o método forEach() ele executa a função de mostrar o resultado em cada el
 A função abaixo converte um endereço IP em formato string para um número inteiro,
 - Parâmetro ip: Recebe um endereço IP no formato string, por exemplo, "192.168.0.1" 
 - ip.split('.'):O metodo split(),divide a string do endereço IP em partes usando o ponto (.) como delimitador.
-- reduce((acc, octet) => (acc << 8) + parseInt(octet), 0),O reduce,reduz o array de partes do endereço IP a um único valor inteiro usando como parametro o acumulador 'acc', que guarda o valor intermediário do cálculo à medida que o array é percorrido, e o valor atual dado como octet.
+- reduce((acc, octet) => (acc << 8) + parseInt(octet), 0),O reduce, reduz o array de partes do endereço IP a um único valor inteiro usando como parametro acumulador 'acc', que guarda o valor intermediário do cálculo à medida que o array é percorrido, e o valor atual dado como octet.
 - O metodo desloca cada componente 8 bits à esquerda e adiciona os componentes para formar um número inteiro único que representa o endereço IP.
 
 */
@@ -99,6 +100,8 @@ function ipStringToInt(ip) {
 /*
 Converte um endereço IP representado que recebe como parametro um número inteiro, que volta para uma string no formato decimal e delimitado po ponto.
 - Parâmetro int: Recebe um endereço IP no formato de número inteiro. Por exemplo, 3232235521 para o endereço IP "192.168.0.1".
+-return [ ... ].join('.'): Converte o número inteiro em um array de quatro octetos e depois junta esses octetos em uma string usando o ponto (.) como delimitador.
+[ oc.oc.oc.oc ]: A expressão que cria um array contendo os quatro octetos do endereço IP.
 */
 function intToIpString(int) {
     return [
