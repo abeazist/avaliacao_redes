@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="/avaliacao_redes_2/style.css">
     <script src="/avaliacao_redes_2/script.js" defer></script>
 </head>
-<body>
-    <div class="caixa" id="caixa">
+<body> <!--fundo-->
+    <div class="caixa" id="caixa"> <!--container que possui os forms-->
         <div class="titulo">
-            <h3>Calculos de Sub-redes</h3>
+            <h3>Calculos de Sub-redes</h3> <!--titulo-->
             <img src="/Arrumando/close_24dp_FILL0_wght400_GRAD0_opsz24.png">
-        </div>
-        <div class="corpo">
+        </div> <!--imagem  que serve para voltar a tela inicial(usando a funcao do js)-->
+        <div class="corpo"> <!--formulario-->
             <div class="linha">
                 <label for="ip-address">Endereço IP:</label>
                 <input type="text" id="ip-address" name="ip-address">
@@ -28,16 +28,16 @@
             </div>
         </div>
         <div class="botoes">
-            <button id="limpar">Limpar!</button>
-            <button id="calcular">Calcular!</button>
+            <button id="limpar">Limpar!</button> <!--botao para limpar dados dos forms-->
+            <button id="calcular">Calcular!</button> <!--botao que abre um novo container que mostra as respostas (usando a funcao do js)-->
         </div>
     </div>
 
-    <div class="resposta" id="resposta">
+    <div class="resposta" id="resposta"> <!--container que aparece ao clicar no botao(usando a funcao do js)-->
         <div class="titulo">
-            <h3>Resultados</h3>
+            <h3>Resultados</h3> <!--titulo-->
             <img src="/Arrumando/close_24dp_FILL0_wght400_GRAD0_opsz24.png" id="fechar-resposta">
-        </div>
+        </div> <!--paragrafos que contem as respostas dos calculos-->
         <div class="corpo">
             <p id="primeiro-endereco">Primeiro Endereço:</p>
             <p id="ultimo-endereco">Ultimo Endereço:</p>

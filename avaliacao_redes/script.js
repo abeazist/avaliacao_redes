@@ -14,13 +14,14 @@ var respostas = document.getElementsByClassName('.respostas')
 var voltar = document.getElementById("voltar")
 
 
+//essa funcao ativa ao clicar no botao calcular e executa a funcao de maneira em que a caixa principal "desapareça" e no lugar "apareça" a caixa das respostas
 document.getElementById("calcular").addEventListener("click", function() {
     document.getElementById("caixa").style.display = "none";
     document.getElementById("resposta").style.display = "block";
     descobreMascara()
 
 });
-
+//aqui ao clicar na imagem de fechar resposta a caixa volta a sua configuraçao antiga "visivel" e a de resposta fica oculta 
 document.getElementById("fechar-resposta").addEventListener("click", function() {
     document.getElementById("caixa").style.display = "block";
     document.getElementById("resposta").style.display = "none";
