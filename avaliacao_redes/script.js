@@ -1,96 +1,113 @@
-const mascara = document.getElementById('masc');
-const enderecoIP = document.getElementById("ip")
-const subrede = document.getElementById('qtdSub');
-//essas de cima sao as q eu sei q tao td certo
-
-const calcular = document.getElementById('calcular')
-const limpar = document.getElementById("limpar");
-const mascaraResposta = document.getElementById("mascaraResposta")
-const subRede = document.getElementById('subRede')
-const primeiroEnd = document.getElementById('primeiroEnd')
-const ultimoEnd = document.getElementById('ultimoEnd')
-var tabela = document.getElementsByClassName('.tabela')
-var respostas = document.getElementsByClassName('.respostas')
-var voltar = document.getElementById("voltar")
-
-
-document.getElementById("calcular").addEventListener("click", function() {
+document.getElementById("calcular").addEventListener("click", function () {
     document.getElementById("caixa").style.display = "none";
     document.getElementById("resposta").style.display = "block";
-    descobreMascara()
-
+    calculaSubredes();
 });
 
-document.getElementById("fechar-resposta").addEventListener("click", function() {
+document.getElementById("fechar-resposta").addEventListener("click", function () {
     document.getElementById("caixa").style.display = "block";
     document.getElementById("resposta").style.display = "none";
 });
 
-//////////////
-
-enderecoIP.addEventListener('input', () => {
-    var formatado = enderecoIP.value.replace(/[^0-9.]/g, '');
-    enderecoIP.value = formatado
+document.getElementById("limpar").addEventListener("click", () => {
+    document.getElementById("ip").value = '';
+    document.getElementById("masc").value = '';
+    document.getElementById("qtdSub").value = '';
+    document.getElementById("respostas").innerHTML = '';
+    document.getElementById("resposta").style.display = "none";
+    document.getElementById("caixa").style.display = "block";
 });
+/*
+declarando as variaveis,os parânetros: enderecoIP,mascara e subrede estão sendo capturando pelo o id do HTML, e com as variáveis mascara eu subrede, está convertendo para um inteiro
+*/
+function calculaSubredes() {
+    const enderecoIP = document.getElementById("ip").value;
+    const mascara = parseInt(document.getElementById("masc").value);
+    const subrede = parseInt(document.getElementById("qtdSub").value);
 
-limpar.addEventListener('click', () => {
-    enderecoIP.value = '';
-    mascara.value = '';
-    subrede.value = '';
-})
+    /*
+    a condição if, verifica se o valor das variaveis que o usuário digitou são válidos
+    */
 
+    if (!enderecoIP || isNaN(mascara) || isNaN(subrede) || subrede < 1) {
+        alert("Por favor, insira um endereço de rede, máscara de rede válida e o número de sub-redes.");
+        return;
+    }
+    const respostasDiv = document.getElementById("mostraCalculos")
+    respostasDiv.innerHTML = '';
+/*
+Inicia o bloco try..catch(e) onde ele calcula a mascara, o 1°endereço e o último, e o endereço das sub redes, com base nos
+dados que o usuário digitou
+*/
+    try {
+        const mascInicial = (32 - mascara);
+        const expoente = Math.pow(2, mascInicial)
+        const qntEndereco = (expoente / subrede)
+        const logaritmo = Math.log2(qntEndereco)
+        const mascFinal = (32 - logaritmo);
 
-function descobreMascara() {
+        const enderecoBloco = ipStringToInt(enderecoIP);
+/*
+Aqui ele declara uma variavel subredes que recebe um array vazio, e conforme o numero de subrede inserido
+pelo o usuário, o metodo array push() adiciona na lista, os resultados dos calculos fornecidos
+*/
+        const subredes = [];
+        for (let i = 0; i < subrede; i++) {
+            const enderecoSubrede = enderecoBloco + (i * (1 << (32 - mascFinal)));
+            const primeiroEnde = enderecoSubrede + 1;
+            const ultimoEnde = enderecoSubrede + (1 << (32 - mascFinal)) - 2;
+            subredes.push({
+                mascaraNova: intToIpString(mascFinal),
+                primeiroEnde: intToIpString(primeiroEnde),
+                ultimoEnde: intToIpString(ultimoEnde)
+            });
+        }
+/*
+Com o método forEach() ele executa a função de mostrar o resultado em cada elemento do array, colocando esse resultado no HTML
+-Parâmetro subRedes: é do tipo lista de array de objetos, onde cada objeto representa uma subrede, com suas informações.
+-Parâmetro index: é do tipo number,utilizado para numerar as sub redes na saída do html, ele possui o índice atual da iteração do forEach.
+*/
+        subredes.forEach((subRedes, index) => {
+            const mostraResultado = document.createElement("div")
+            mostraResultado.innerHTML = `<p id="redes"><b>Sub-rede: </b>${index + 1}</p>
+            <p id="primeiro-endereco"><b>Primeiro Endereço: </b>${subRedes.primeiroEnde}</p>
+            <p id="ultimo-endereco"><b>Ultimo Endereço: </b>${subRedes.ultimoEnde}</p>
+            <p id="mascara"><b>Máscara: </b>/${mascFinal}</p>
+            <br/>
+            <hr>
+            <br/>`
+            respostasDiv.appendChild(mostraResultado)
+        });
+    } catch (e) {
 
-
-    const separa = enderecoIP.value.split(".")
-    const ip1 = separa.slice(-1) // index 3
-    const ip2 = separa.slice(2, 3) //index 2
-    const ip3 = separa.slice(1, 2) //index 1
-    const ip4 = separa.slice(0, 1) //inedx 0
-
-    const paraString1 = ip1.toString()
-    const paraString2 = ip2.toString()
-    const paraString3 = ip3.toString()
-    const paraString4 = ip4.toString()
-
-    // console.log(paraString1)
-    // console.log(paraString2)
-    // console.log(paraString3)
-    // console.log(paraString4)    
-
-    //mascara
-    const mascInicial = (32 - mascara.value);
-    const expoente = Math.pow(2, mascInicial)
-    const qntEndereco = (expoente / subrede.value)
-    const logaritmo = Math.log2(qntEndereco)
-    const mascFinal = (32 - logaritmo);
-    console.log(`Mascara: ${mascFinal}`)
-    const somaEnderecoBloco = (qntEndereco - 1)
-
-    //intervalo
-    const intervaloIP = (parseFloat(paraString1) + parseFloat(somaEnderecoBloco))
-    const enderecoBloco = `${paraString4}.${paraString3}.${paraString2}.${intervaloIP}`
-    console.log(`Intervalo: ${enderecoIP.value} - ${enderecoBloco}`)
-
-    //primeiro end
-    const calcPrimeiroEnd = (parseFloat(paraString1) + 1)
-    const primeiroEndValido = `${paraString4}.${paraString3}.${paraString2}.${calcPrimeiroEnd}`
-    console.log(`Primeiro end válido: ${primeiroEndValido}`)
-
-    //ultimo end
-    const calcUltimoEnd = (parseFloat(intervaloIP) - 1)
-    const ultimoEndValido = `${paraString4}.${paraString3}.${paraString2}.${calcUltimoEnd}`
-    console.log(`Ultimo end válido: ${ultimoEndValido}`)
-
-    for (var i = 0; i < subrede.value; i++) {
-        enderecoIP = enderecoBloco + 1
-        console.log(enderecoIP)
-        descobreMascara()
+        alert('Erro ao calcular as sub-redes: ' + e.message);
     }
 }
 
-function calculos() {
-    descobreMascara()
+/*
+A função abaixo converte um endereço IP em formato string para um número inteiro,
+- Parâmetro ip: Recebe um endereço IP no formato string, por exemplo, "192.168.0.1" 
+- ip.split('.'):O metodo split(),divide a string do endereço IP em partes usando o ponto (.) como delimitador.
+- reduce((acc, octet) => (acc << 8) + parseInt(octet), 0),O reduce, reduz o array de partes do endereço IP a um único valor inteiro usando como parametro acumulador 'acc', que guarda o valor intermediário do cálculo à medida que o array é percorrido, e o valor atual dado como octet.
+- O metodo desloca cada componente 8 bits à esquerda e adiciona os componentes para formar um número inteiro único que representa o endereço IP.
+
+*/
+
+function ipStringToInt(ip) {
+    return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet), 0);
 }
 
+/*
+Converte um endereço IP representado que recebe como parametro um número inteiro, que volta para uma string no formato decimal e delimitado po ponto.
+- Parâmetro int: Recebe um endereço IP no formato de número inteiro. Por exemplo, 3232235521 para o endereço IP "192.168.0.1".
+-return [ ... ].join('.'): Converte o número inteiro em um array de quatro octetos e depois junta esses octetos em uma string usando o ponto (.) como delimitador.
+[ oc.oc.oc.oc ]: A expressão que cria um array contendo os quatro octetos do endereço IP.
+*/
+function intToIpString(int) {
+    return [
+        (int >>> 24) & 255,
+        (int >>> 16) & 255,
+        (int >>> 8) & 255,
+        int & 255
+    ].join('.');
+}
